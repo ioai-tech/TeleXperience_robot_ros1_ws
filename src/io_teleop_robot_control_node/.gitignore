@@ -1,0 +1,9 @@
+*build*
+*devel*
+*__pycache__*
+*copy*
+**/data
+*ckpt*
+*.hdf5
+*logs*
+.vscode/
