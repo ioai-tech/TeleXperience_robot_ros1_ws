@@ -16,11 +16,13 @@ class RobotDorsal(object):
         self,
         robot,
         dorsal_lift_joint_index,
+        home_j_pos,
         client_id=0,
     ):
         self.physics_clent_id = client_id
         self.robot = robot
         self.dorsal_lift_joint_index = dorsal_lift_joint_index
+        self.home_j_pos = home_j_pos
 
     @property
     def height(self):
@@ -73,11 +75,19 @@ class RobotBase(object):
         self.physics_clent_id = client_id
         self.robot = robot
 
+        self.trans = multiply_transforms(
+            invert_transform(p.getBasePositionAndOrientation(self.robot.robot_id)),
+            p.getDynamicsInfo(self.robot.robot_id, -1)[3:5],
+        )
+
     @property
     def pose(self):
-        return p.getBasePositionAndOrientation(self.robot.robot_id)
+        return multiply_transforms(
+            p.getBasePositionAndOrientation(self.robot.robot_id), self.trans
+        )
 
     def reset_base(self, pose):
+        pose = multiply_transforms(pose, invert_transform(self.trans))
         p.resetBasePositionAndOrientation(
             self.robot.robot_id, pose[0], pose[1], physicsClientId=self.physics_clent_id
         )
@@ -161,9 +171,7 @@ class RobotArm(object):
         ee_pose = p.getLinkState(
             self.robot.robot_id, self.ee_index, physicsClientId=self.physics_clent_id
         )[4:6]
-        base_pose = p.getBasePositionAndOrientation(
-            self.robot.robot_id, physicsClientId=self.physics_clent_id
-        )
+        base_pose = self.robot.base.pose
         inv_base_pose = p.invertTransform(base_pose[0], base_pose[1])
         ee_in_base_frame = multiply_transforms(inv_base_pose, ee_pose)
         return ee_in_base_frame
@@ -453,6 +461,7 @@ class AssembledRobot:
             self.dorsal = RobotDorsal(
                 self,
                 self.configs["dorsal"]["joint_index"],
+                self.configs["dorsal"].get("rest_j_pos", 0.0),
                 self.physics_clent_id,
             )
 

@@ -1,0 +1,6 @@
+[submodule "io_teleop_robot_descriptions"]
+	path = io_teleop_robot_descriptions
+	url = http://git.io-intelligence.com/io_public/io_teleop_robot_descriptions.git
+[submodule "io_teleop_robot_utils"]
+	path = io_teleop_robot_utils
+	url = http://git.io-intelligence.com/io_public/io_teleop_robot_utils.git

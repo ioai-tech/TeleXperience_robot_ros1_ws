@@ -16,5 +16,5 @@
 ## run with simulation environment
 
 ``` bash
-./run_OpenLoong.sh
+./run_Gen_sim.sh
 ```

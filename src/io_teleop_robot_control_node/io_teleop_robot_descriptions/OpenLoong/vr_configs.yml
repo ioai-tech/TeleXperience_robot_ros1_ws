@@ -1,4 +1,4 @@
-urdf_path: OpenLoong/azureloong_description/urdf/AzureLoong_sr.urdf
+urdf_path: urdf/AzureLoong_sr.urdf
 wo_controller: false
 robot_name: OpenLoong
 base_pose:

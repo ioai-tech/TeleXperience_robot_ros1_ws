@@ -5,8 +5,9 @@ control_ros:
   joint_state: "/io_teleop/joint_states"
   ee_target: "/io_teleop/target_ee_poses"
   ee_state: "/io_teleop/state_ee_poses"
+  sol_q: "/io_teleop/sol_q"
 model:
-  urdf: azureloong_description/urdf/AzureLoong_sr.urdf
+  urdf: urdf/AzureLoong_sr.urdf
   lock_joints: [
                 "J_hip_r_roll",
                 "J_hip_r_yaw",
