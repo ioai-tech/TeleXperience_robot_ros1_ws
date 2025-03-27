@@ -41,12 +41,10 @@ L_SHOULDER_R:
    - `step`: Moves the joint to a target position abruptly.
    - `ramp`: Moves the joint gradually to a target position.
 4. The `magnitude` field represents:
-   - The amplitude of the sine wave.
-   - The target position for step and ramp types.
+   - The amplitude of the command.
    - **Important:** Start with a small value and gradually increase it while staying within the joint's limit.
-5. The frequence field actually represents the period of the command:
-   - Lower values result in faster motion.
-   - Higher values cause the joint to move more slowly.
+5. `frequence`:
+   - Lower values result in slower motion. (not for `step`) 
 
 ⚠ **Collision avoidance is your responsibility!** Ensure that the test does not cause unintended contact or damage.
 
@@ -73,4 +71,5 @@ The robot should smoothly follow the command with:
 - **Minimal delay**
 
 By following these steps, you can ensure that your joint position controller meets the requirements of TeleXperience. Happy coding!
+
 
