@@ -1,0 +1,10 @@
+rate: 100
+joint_cmd: "/io_teleop/joint_cmd"
+joint_state: "/io_teleop/joint_states"
+control_type: "joint"
+control_joints:
+    # # type: sine step ramp
+    # L_WRIST_P:
+    #   type: "sine"
+    #   magnitude: 0.1
+    #   frequence: 0.2
