@@ -19,7 +19,6 @@ from std_srvs.srv import Trigger, TriggerResponse
 import argparse
 
 from io_teleop_robot_utils.robot_module import AssembledRobot
-
 from io_teleop_robot_utils.utils import (
     debug_draw_pose,
     multiply_transforms,
@@ -71,6 +70,9 @@ class SimRobotController(AssembledRobot):
             self.physics_clent_id,
         )
         debug_draw_pose(self.base.pose)
+        for i, arm in enumerate(self.arms):
+            debug_draw_pose(arm.abs_ee_pose)
+
         self.ids = [None, None]
         self.reset_home()
         # get joint state and then pub to controller
@@ -91,6 +93,11 @@ class SimRobotController(AssembledRobot):
             "/io_teleop/target_gripper_status",
             JointState,
             self.gripper_status_callback,
+        )
+        self.target_finger_joints_sub = rospy.Subscriber(
+            f"/io_teleop/target_finger_joints",
+            JointState,
+            self.target_finger_joints_callback,
         )
         if "fixed_link" not in self.configs:
             self.target_base_move_sub = rospy.Subscriber(
@@ -152,6 +159,13 @@ class SimRobotController(AssembledRobot):
         for i, gripper in enumerate(self.grippers):
             gripper.reset(gripper_status[i])
 
+    def target_finger_joints_callback(self, msg):
+        joint_pos = msg.position
+        joint_names = msg.name
+        for pos, name in zip(joint_pos, joint_names):
+            joint_id = self.joint_name2id_dict[name]
+            self.reset_j([joint_id], [pos])
+
     def target_ee_callback(self, msg):
         if "controller_indices" in self.configs:
             for i in range(len(self.arms)):
@@ -205,7 +219,12 @@ if __name__ == "__main__":
     rospy.init_node("sim_robot_controller_node")
     args = argparse.ArgumentParser()
     args.add_argument("--robot_name", type=str)
+    args.add_argument(
+        "--init_debug",
+        action="store_true",
+        help="Whether to use debug mode or not.",
+    )
     args = args.parse_args()
     config_path = args.robot_name + "/vr_configs.yml"
-    robot = SimRobotController(config_path)
+    robot = SimRobotController(config_path, init_debug=args.init_debug)
     rospy.spin()

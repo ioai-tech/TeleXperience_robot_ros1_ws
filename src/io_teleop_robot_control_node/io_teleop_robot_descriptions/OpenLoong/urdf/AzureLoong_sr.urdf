@@ -319,18 +319,6 @@
     <child link="Link_arm_l_palm"/>
   </joint>
 
-  <link name="io_teleop_ee_link_left"/>
-  <joint name="io_teleop_ee_joint_left" type="fixed">
-    <origin rpy="3.14 -1.57 0" xyz="0 0 0"/>
-    <parent link="Link_arm_l_palm"/>
-    <child link="io_teleop_ee_link_left"/>
-  </joint>
-  <link name="io_teleop_ee_link_right"/>
-  <joint name="io_teleop_ee_joint_right" type="fixed">
-    <origin rpy="3.14 1.57 0" xyz="0 0 0"/>
-    <parent link="Link_arm_r_palm"/>
-    <child link="io_teleop_ee_link_right"/>
-  </joint>
   <joint name="J_arm_r_08" type="fixed">
     <origin rpy="1.5708 3.1416 0" xyz="0.0 -0.07 -0.035"/>
     <parent link="Link_arm_r_07"/>
@@ -3902,4 +3890,17 @@
       <pose>0 0 0 0 0 0</pose>
     </sensor>
   </gazebo>
+
+  <link name="io_teleop_ee_link_left"/>
+  <joint name="io_teleop_ee_joint_left" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="Link_arm_l_palm"/>
+    <child link="io_teleop_ee_link_left"/>
+  </joint>
+  <link name="io_teleop_ee_link_right"/>
+  <joint name="io_teleop_ee_joint_right" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="Link_arm_r_palm"/>
+    <child link="io_teleop_ee_link_right"/>
+  </joint>
 </robot>

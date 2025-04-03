@@ -379,7 +379,18 @@ class AssembledRobot:
             joint_index_debug_param_dt = {}
             for i in range(0, p.getNumJoints(self.robot_id)):
                 joint_info = p.getJointInfo(self.robot_id, i)
-                print(joint_info)
+                joint_type = None
+                if joint_info[2] == p.JOINT_REVOLUTE:
+                    joint_type = "REVOLUTE"
+                elif joint_info[2] == p.JOINT_PRISMATIC:
+                    joint_type = "PRISMATIC"
+                elif joint_info[2] == p.JOINT_SPHERICAL:
+                    joint_type = "SPHERICAL"
+                elif joint_info[2] == p.JOINT_FIXED:
+                    joint_type = "FIXED"
+                print(
+                    f"joint&parent_link_id: {str(joint_info[0]).ljust(5)} joint_type:{joint_type.ljust(10)} joint_name: {joint_info[1].decode('utf-8').ljust(28)} parent_link_name: {joint_info[12].decode('utf-8').ljust(28)}"
+                )
                 if joint_info[2] != p.JOINT_FIXED:
                     joint_index_debug_param_dt[i] = p.addUserDebugParameter(
                         paramName=f"   {i}    {joint_info[1].decode('utf-8')}",

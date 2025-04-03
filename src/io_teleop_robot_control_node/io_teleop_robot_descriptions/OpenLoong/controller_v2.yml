@@ -8,20 +8,6 @@ control_ros:
   sol_q: "/io_teleop/sol_q"
 model:
   urdf: urdf/AzureLoong_sr.urdf
-  lock_joints: [
-                "J_hip_r_roll",
-                "J_hip_r_yaw",
-                "J_hip_r_pitch",
-                "J_knee_r_pitch",
-                "J_ankle_r_pitch",
-                "J_ankle_r_roll",
-                "J_hip_l_roll",
-                "J_hip_l_yaw",
-                "J_hip_l_pitch",
-                "J_knee_l_pitch",
-                "J_ankle_l_pitch", 
-                "J_ankle_l_roll",
-              ]
   free_joints: [
                 "J_arm_l_01",
                 "J_arm_l_02",
@@ -37,23 +23,12 @@ model:
                 "J_arm_r_05",
                 "J_arm_r_06",
                 "J_arm_r_07",
-                # "J_head_yaw",
-                # "J_head_pitch",
-                # "J_waist_pitch",
-                # "J_waist_roll",
-                # "J_waist_yaw",
               ]
   base_name: ["base_link", "base_link"]
-  ee_name: ["Link_arm_r_07", "Link_arm_l_07"]
+  ee_name: ["io_teleop_ee_link_right", "io_teleop_ee_link_left"]
 controller:
   dt: 0.01
-  # ik weight
   ee_weight: [[5, 5, 5, 1, 1, 1], [5, 5, 5, 1, 1, 1]]
   j_weight: [0, 0.1, 0, 0, 0, 0, 0, 0, 0.1, 0, 0, 0, 0, 0]
-  # p controller parameter
-  x_p_gain: [10, 10, 10, 100, 100, 100]
-  j_p_gain: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]
-  # control limit
   q_dot_limit: [180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180, 180]
-  x_limit: []
-  x_dot_limit: [0.2, 0.2, 0.2, 90, 90, 90]
+  j_p_gain: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]

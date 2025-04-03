@@ -1,22 +1,9 @@
-base_name: "base_link"
-ee_name: ["Link_arm_r_07", "Link_arm_l_07"]
-pub_arm_ee: False
 pub_joint: True
 rate: 10
 mocap_topic: "/mocap/sensor_data"
 joint_target_topic: "/io_teleop/target_joint_from_mocap"
 joint_state_topic: "/io_teleop/joint_states"
-# joint_state: "/io_teleop/joint_states"
-# joint_target: "/loong/upper_body_joint_target"
-# joint_cmd: "/loong/upper_body_joint_cmd"
-# joint_state: "/loong/upper_body_joint_state"
-# ee_target: "/loong/upper_body_ee_pose_target"
-# ee_state: "/loong/upper_body_ee_pose_state"
-# target_angle_topic: "/loong/upper_body_joint_cmd"
-# XYZ euler
-base_offset: [0, 0, -90]
-ee_offset_left: [0, 180, 0]
-ee_offset_right: [180, 0, 0]
+
 joints: [
           "J_arm_l_01",
           "J_arm_l_02",
@@ -32,11 +19,6 @@ joints: [
           "J_arm_r_05",
           "J_arm_r_06",
           "J_arm_r_07",
-          #"J_head_yaw",
-          #"J_head_pitch",
-          # "J_waist_pitch",
-          # "J_waist_roll",
-          #  "J_waist_yaw",
         ]
 map: 
   l_arm: [
@@ -69,13 +51,3 @@ map:
             ["Y", "J_arm_r_06", 1],
             ["X", "J_arm_r_07", 1],
           ]
-          # head: [
-          #["Z", "J_head_yaw", 1],
-          #["X", "J_head_pitch", 1],
-          #["Y", "", 0],
-          #]
-          #base: [
-          # ["Z", "J_waist_yaw", -1],
-          # ["Y","J_waist_roll", -1],
-          # ["X","J_waist_pitch", -1],
-          #]
