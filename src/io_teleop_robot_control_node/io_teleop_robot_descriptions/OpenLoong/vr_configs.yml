@@ -1,4 +1,5 @@
 urdf_path: urdf/AzureLoong_sr.urdf
+wo_controller: false
 robot_name: OpenLoong
 base_pose:
   position: [0, 0, 0.9]
@@ -19,6 +20,6 @@ head:
 controller_indices:
   cmd_ee: [12, 49]
   base: [1, 1]
-# vibration_thresholds:
-#   ee_dist: [0.15, 0.2]
-#   tabletop_height: 0.85
+vibration_thresholds:
+  ee_dist: [0.15, 0.2]
+  tabletop_height: 0.85
