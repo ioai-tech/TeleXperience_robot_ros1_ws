@@ -17,7 +17,7 @@ cd TeleXperience_robot_ros1_ws
 ```
 
 
-## run with simulation environment
+## Run with Simulation Environment
 connect wifi to TeleXperience wifi, visit `10.42.0.3:7876`, switch to OpenLoong_ROS1 config
 
 ![alt text](assets/7876.png)
