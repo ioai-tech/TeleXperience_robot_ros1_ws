@@ -33,7 +33,7 @@ Connect your computer to TeleBox Interactive Port with a network cable
 ./run_Gen_sim.sh
 ```
 
-press `RESTART TELEBOX` button in VR webview panal or APPLY CONFIGURATION in `192.168.123.24:7876`
+press `RESTART TELEBOX` button in VR webview panal or APPLY CONFIGURATION in `192.168.123.2:7876`
 
 Hold **both** vr controllers make sure **both** green signal lights are on, 
 
@@ -45,7 +45,7 @@ For new robot test:
 
 You can add new robot files folder in `src/io_teleop_robot_control_node/io_teleop_robot_descriptions`
 
-Upload the robot zipped file in `192.168.123.24:7876` and edit the configs.
+Upload the zipped robot files folder via `192.168.123.2:7876` and edit the configs.
 
-Change ROBOT_NAME in run_Gen_sim.sh
+**Change ROBOT_NAME in run_Gen_sim.sh**
 
